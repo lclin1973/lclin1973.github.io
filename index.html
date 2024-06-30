@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>阿亮老師的個人簡介網頁</title>
+    <style>
+        /* CSS 樣式 */
+        body {
+            font-family: '微軟正黑體', Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+            color: #333;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        header {
+            background: #2c3e50;
+            color: #ecf0f1;
+            padding: 1rem 0;
+            text-align: center;
+        }
+        section {
+            margin: 20px 0;
+            padding: 20px;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        h1, h2 {
+            color: #2c3e50;
+        }
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+        .social-links a {
+            color: #3498db;
+            text-decoration: none;
+            font-size: 18px;
+        }
+        .photo-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+        }
+        .photo-gallery img {
+            width: 100%;
+            height: auto;
+            border-radius: 5px;
+            transition: transform 0.3s ease;
+        }
+        .photo-gallery img:hover {
+            transform: scale(1.05);
+        }
+        .activity-list {
+            list-style-type: none;
+            padding: 0;
+        }
+        .activity-list li {
+            margin-bottom: 10px;
+            padding: 10px;
+            background: #ecf0f1;
+            border-radius: 5px;
+        }
+        .download-btn {
+            display: inline-block;
+            background: #3498db;
+            color: #fff;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background 0.3s ease;
+        }
+        .download-btn:hover {
+            background: #2980b9;
+        }
+        @media (max-width: 768px) {
+            .container {
+                padding: 10px;
+            }
+            .photo-gallery {
+                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>阿亮老師的個人簡介</h1>
+        </div>
+    </header>
+    
+    <div class="container">
+        <section id="profile">
+            <h2>個人資料</h2>
+            <p>我是阿亮老師，專注於教育創新和技術整合。致力於幫助學生發展21世紀所需的技能。</p>
+        </section>
+
+        <section id="social-media">
+            <h2>社交媒體連結</h2>
+            <div class="social-links">
+                <a href="https://www.facebook.com/yourprofile" target="_blank">Facebook</a>
+                <a href="https://www.instagram.com/yourprofile" target="_blank">Instagram</a>
+            </div>
+        </section>
+
+        <section id="photos">
+            <h2>個人照片展示</h2>
+            <div class="photo-gallery">
+                <img src="photo1.jpg" alt="教學活動照片" onclick="enlargePhoto(this)">
+                <img src="photo2.jpg" alt="研討會演講" onclick="enlargePhoto(this)">
+                <img src="photo3.jpg" alt="戶外教學" onclick="enlargePhoto(this)">
+            </div>
+        </section>
+
+        <section id="activities">
+            <h2>活動紀錄</h2>
+            <ul class="activity-list">
+                <li>2024年5月 - 參加全國教育科技研討會</li>
+                <li>2024年3月 - 舉辦創新教學工作坊</li>
+                <li>2024年1月 - 發表教育科技論文</li>
+            </ul>
+        </section>
+
+        <section id="download">
+            <h2>下載區</h2>
+            <a href="resume.pdf" class="download-btn" download>下載履歷表</a>
+        </section>
+    </div>
+
+    <script>
+        // JavaScript 功能
+        function enlargePhoto(img) {
+            const modal = document.createElement('div');
+            modal.style.position = 'fixed';
+            modal.style.top = '0';
+            modal.style.left = '0';
+            modal.style.width = '100%';
+            modal.style.height = '100%';
+            modal.style.backgroundColor = 'rgba(0,0,0,0.8)';
+            modal.style.display = 'flex';
+            modal.style.justifyContent = 'center';
+            modal.style.alignItems = 'center';
+            modal.style.zIndex = '1000';
+
+            const enlargedImg = document.createElement('img');
+            enlargedImg.src = img.src;
+            enlargedImg.style.maxWidth = '90%';
+            enlargedImg.style.maxHeight = '90%';
+            enlargedImg.style.objectFit = 'contain';
+
+            modal.appendChild(enlargedImg);
+            document.body.appendChild(modal);
+
+            modal.onclick = function() {
+                document.body.removeChild(modal);
+            };
+        }
+
+        // 更新個人資訊的功能（示例）
+        function updateProfile() {
+            const name = prompt("請輸入您的名字：");
+            const description = prompt("請輸入您的簡介：");
+            if (name && description) {
+                document.querySelector('#profile h2').textContent = name;
+                document.querySelector('#profile p').textContent = description;
+            }
+        }
+
+        // 添加更新按鈕
+        const updateBtn = document.createElement('button');
+        updateBtn.textContent = '更新個人資訊';
+        updateBtn.onclick = updateProfile;
+        document.querySelector('#profile').appendChild(updateBtn);
+    </script>
+</body>
+</html>
